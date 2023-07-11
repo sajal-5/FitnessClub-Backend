@@ -2,7 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const app = express();
 
-const cors=require('cors');
+// const cors=require('cors');
 
 dotenv.config({ path: './config.env' })
 
@@ -12,10 +12,10 @@ require('./db/conn');
 
 app.use(express.json());
 
-app.use(cors({
-    origin:'*',
-    methods: ["GET", "POST", "PUT", "DELETE"]
-}))
+// app.use(cors({
+//     origin:'*',
+//     methods: ["GET", "POST", "PUT", "DELETE"]
+// }))
 
 //linking router files
 app.use(require('./router/auth'));
