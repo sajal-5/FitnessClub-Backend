@@ -103,17 +103,17 @@ router.post('/signin', async (req, res) => {
 
 //about page
 
-router.get('/about', authenticate, (req, res) => {
+router.get('/about',  (req, res) => {
     res.send(req.rootMember);
 });
 
 //get user data for contact us, classes booking and home page 
-router.get('/getdata', authenticate, (req, res) => {
+router.get('/getdata',  (req, res) => {
     res.send(req.rootMember);
 });
 
 //contact us page
-router.post('/contact', authenticate, async (req, res) => {
+router.post('/contact',  async (req, res) => {
     try {
         const { name, email, phone, message } = req.body;
 
@@ -152,7 +152,7 @@ router.get('/logout', (req, res) => {
 
 //get all users
 
-router.get('/getusers', authenticateAdmin, async (req, res) => {
+router.get('/getusers',  async (req, res) => {
     try {
         const users = await Member.find({ role: "1" });
         res.json(users);
@@ -163,7 +163,7 @@ router.get('/getusers', authenticateAdmin, async (req, res) => {
 });
 
 //get all messages
-router.get('/getmessages', authenticateAdmin, async (req, res) => {
+router.get('/getmessages',  async (req, res) => {
     try {
         const messages = await Messages.find();
         res.json(messages);
@@ -288,7 +288,7 @@ router.post('/getTrainerData', async (req, res) => {
 
 
 //buying course
-router.post('/buyCourse', authenticate, async (req, res) => {
+router.post('/buyCourse', async (req, res) => {
     try {
         const classID = req.body.courseID;
         const memberID = req.MemberID;
