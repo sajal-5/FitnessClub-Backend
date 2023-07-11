@@ -296,9 +296,10 @@ router.post('/buyCourse', async (req, res) => {
         const classID = req.body.courseID;
         const memberID = req.MemberID;
 
-        const memberContact = await Member.findOne({ _id: memberID });
+        // const memberContact = await Member.findOne({ _id: memberID });
+        // const memberContact = defaultuser;
 
-        if (memberContact) {
+        if (memberContact!=='') {
             const isCourseAlreadyPresent = memberContact.courses.some(course => course.classID === classID);
 
             if (isCourseAlreadyPresent) {
