@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const authenticate = require('../middleware/authenticate');
 const authenticateAdmin = require('../middleware/authenticateAdmin');
 
-
+var defaultuser="";
 router.use(cookieParser());
 require('../db/conn');
 
@@ -82,6 +82,8 @@ router.post('/signin', async (req, res) => {
                 return res.status(400).json({ error: "Invalid credentials" });
             }
 
+            defaultuser=memberLogin;
+
             if (memberLogin.role === "1") {
                 // User role (role 1)
                 res.json({ message: "User sign-in successful", role: "user" });
@@ -109,7 +111,7 @@ router.get('/about',  (req, res) => {
 
 //get user data for contact us, classes booking and home page 
 router.get('/getdata',  (req, res) => {
-    res.send(req.rootMember);
+    res.send(defaultuser);
 });
 
 //contact us page
