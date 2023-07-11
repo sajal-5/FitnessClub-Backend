@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const app = express();
 
+const cors=require('cors');
 
 dotenv.config({ path: './config.env' })
 
@@ -10,6 +11,10 @@ require('./db/conn');
 // const Member=require('./model/memberSchema');
 
 app.use(express.json());
+
+app.use(cors({
+    origin:'*'
+}))
 
 //linking router files
 app.use(require('./router/auth'));
